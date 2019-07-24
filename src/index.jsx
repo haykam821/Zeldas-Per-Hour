@@ -6,12 +6,41 @@ const ReactDOM = require("react-dom");
 const HOUR = 3600;
 
 const systems = {
-	wiiu: ["twwhd", "botw"],
-	switch: ["botw"],
+	wiiu: ["twwhd", "botw", "The_Legend_of_Zelda", "mm", "oot", "tphd", "lozst", "lozss", "tlozph", "tmc", "Zelda_II_The_Adventure_of_Link"],
+	switch: ["botw", "The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link"],
+	nes: ["The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link"],
+	gamecube: ["The_Legend_of_Zelda", "fsa", "mm", "oot", "tp", "tww", "Zelda_II_The_Adventure_of_Link"],
+	wii: ["The_Legend_of_Zelda", "alttp", "mm", "oot", "tp", "lozss", "Zelda_II_The_Adventure_of_Link"],
+	gba: ["The_Legend_of_Zelda", "alttpgba", "The_Legend_of_Zelda_Four_Swords", "la", "ladx", "oos", "ooa", "tmc", "Zelda_II_The_Adventure_of_Link"],
+	"3ds": ["The_Legend_of_Zelda", "albw", "alttp", "The_Legend_of_Zelda_Four_Swords", "mm3d", "oot3d", "tfh", "lozst", "oos", "ooa", "tmc", "Zelda_II_The_Adventure_of_Link"],
+	famicom: ["The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link"],
+	nesClassic: ["The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link"],
+	snesClassic: ["alttp"],
+	snes: ["alttp"],
+	gbp: ["alttpgba", "la", "ladx", "oos", "ooa"],
+	ds: ["alttpgba", "lozst", "tlozph"],
+	sgb2: ["la", "ladx"],
+	gb: ["la", "ladx"],
+	gbi: ["la", "ladx", "oos", "ooa", "tmc"],
+	gbc: ["ladx", "oos", "ooa"],
+	n64: ["mm", "oot"],
+	shield: ["tp"],
 };
 const systemNames = {
 	wiiu: "Wii U",
 	switch: "Nintendo Switch",
+	nes: "NES",
+	snes: "SNES",
+	gamecube: "GameCube",
+	wii: "Wii",
+	gba: "Game Boy Advance",
+	"3ds": "Nintendo 3DS",
+	famicom: "Famicom",
+	nesClassic: "NES Classic",
+	snesClassic: "SNES Classic",
+	gbp: "GBP??",
+	gbc: "Game Boy Color",
+	n64: "Nintendo 64",
 };
 
 const games = Object.values(systems).reduce((acc, systemGames) => {
