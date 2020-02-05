@@ -11,7 +11,7 @@ const HOUR = 3600;
 
 const systems = {
 	wiiu: ["twwhd", "botw", "The_Legend_of_Zelda", "mm", "oot", "tphd", "lozst", "lozss", "tlozph", "tmc", "Zelda_II_The_Adventure_of_Link"],
-	switch: ["botw", "The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link"],
+	switch: ["botw", "The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link", "alttp", "las"],
 	nes: ["The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link"],
 	gamecube: ["The_Legend_of_Zelda", "fsa", "mm", "oot", "tp", "tww", "Zelda_II_The_Adventure_of_Link"],
 	wii: ["The_Legend_of_Zelda", "alttp", "mm", "oot", "tp", "lozss", "Zelda_II_The_Adventure_of_Link"],
