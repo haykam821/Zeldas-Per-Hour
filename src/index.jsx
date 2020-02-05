@@ -3,6 +3,10 @@ require("file-loader?name=[name].[ext]!html-minify-loader!./index.html");
 const React = require("react");
 const ReactDOM = require("react-dom");
 
+const debug = require("debug");
+const log = debug("zeldas-per-hour:main");
+const dataLog = debug("zeldas-per-hour:data");
+
 const HOUR = 3600;
 
 const systems = {
@@ -68,13 +72,19 @@ class DataView extends React.Component {
 			for (let game of games) {
 				if (gameTimes[game]) return;
 
+				dataLog("fetching game with id '%s'", game);
 				await fetch("https://www.speedrun.com/api/v1/games/" + game).then(res => res.json()).then(({ data: gameInfo }) => {
-					gameNames[game] = gameInfo.names.international;
+					const gameName = gameInfo.names.international;
+					dataLog("fetched game '%s' (with id '%s')", gameName, game);
+					gameNames[game] = gameName;
 				
 					const leaderboardLink = gameInfo.links.find(link => link.rel === "leaderboard");
 					if (!leaderboardLink) return;
 
+					dataLog("fetching runs for game '%s' (with id '%s')", gameName, game);
 					return fetch(leaderboardLink.uri).then(res => res.json()).then(({ data: leaderboard }) => {
+						dataLog("fetched runs for game '%s' (with id '%s')", gameName, game)
+
 						const firstPlace = leaderboard.runs.find(run => run.place === 1);
 						if (firstPlace && firstPlace.run && firstPlace.run.times && firstPlace.run.times.primary_t) {
 							gameTimes[game] = firstPlace.run.times.primary_t;
@@ -105,7 +115,7 @@ class DataView extends React.Component {
 				return <p key={system}>
 					{
 						`On the ${systemNames[system] || system},
-						you can play ${gameNames[fastestGame]}}
+						you can play ${gameNames[fastestGame]}
 						about ${(HOUR / time).toFixed(2)}
 						times per hour.`
 					}
@@ -135,4 +145,6 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"), () => {
+	log("rendered app");
+});
