@@ -1,4 +1,10 @@
 {
+	"name": "zeldas-per-hour",
+	"description": "A website calculating the Zeldas Per Hour (ZPH) of each Nintendo console.",
+	"version": "1.0.0",
+	"main": "./src/index.jsx",
+	"author": "haykam821",
+	"license": "MIT",
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
 		"eslint": "^6.8.0",
@@ -37,5 +43,13 @@
 				"version": "detect"
 			}
 		}
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/haykam821/Zeldas-Per-Hour.git"
+	},
+	"bugs": {
+		"url": "https://github.com/haykam821/Zeldas-Per-Hour/issues"
+	},
+	"homepage": "https://github.com/haykam821/Zeldas-Per-Hour#readme"
 }
