@@ -1,9 +1,13 @@
 const React = require("react");
+const propTypes = require("prop-types");
+
+const styled = require("styled-components").default;
+
 const DataView = require("./data-view.jsx");
 
-class App extends React.Component {
+class AppUnstyled extends React.Component {
 	render() {
-		return <React.Fragment>
+		return <div className={this.props.className}>
 			<h1>Zeldas Per Hour</h1>
 			<p>
 				This fun tool shows how many Zeldas can be played on a given Nintendo console per hour.
@@ -11,15 +15,24 @@ class App extends React.Component {
 				If a console has multiple Zelda games, the fastest will be used.
 			</p>
 
-			<DataView style={{
-				border: "1px solid black",
-				padding: 8,
-			}} />
+			<DataView />
 
 			<p>
 				<a href="https://github.com/haykam821/Zeldas-Per-Hour">GitHub repo</a>
 			</p>
-		</React.Fragment>;
+		</div>;
 	}
 }
+AppUnstyled.propTypes = {
+	className: propTypes.string,
+};
+
+const App = styled(AppUnstyled)`
+	font-family: sans-serif;
+
+	${DataView} {
+		border: 1px solid black;
+		padding: 8px;
+	}
+`;
 module.exports = App;

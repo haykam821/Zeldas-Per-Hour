@@ -1,6 +1,8 @@
 const React = require("react");
 const propTypes = require("prop-types");
 
+const styled = require("styled-components").default;
+
 const { data: dataLog } = require("../util/debug.js");
 
 const HOUR = 3600;
@@ -10,7 +12,7 @@ const { systems, systemNames, games } = require("../data.js");
 const gameTimes = {};
 const gameNames = {};
 
-class DataView extends React.Component {
+class DataViewUnstyled extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -51,10 +53,14 @@ class DataView extends React.Component {
 
 	render() {
 		if (this.state.loading) {
-			return <p>Loading...</p>;
+			return <div className={this.props.className}>
+				<span>
+					Loading...
+				</span>
+			</div>;
 		}
 
-		return <div style={this.props.style}>
+		return <div className={this.props.className}>
 			{Object.keys(systems).map(system => {
 				const [fastestGame, time] = systems[system].reduce((acc, game) => {
 					if (gameTimes[game] < acc[1]) {
@@ -75,8 +81,9 @@ class DataView extends React.Component {
 		</div>;
 	}
 }
-DataView.propTypes = {
-	style: propTypes.string,
+DataViewUnstyled.propTypes = {
+	className: propTypes.string,
 };
 
+const DataView = styled(DataViewUnstyled)``;
 module.exports = DataView;
