@@ -6,17 +6,11 @@
 	"author": "haykam821",
 	"license": "MIT",
 	"devDependencies": {
-		"babel-eslint": "^10.0.3",
-		"eslint": "^7.24.0",
-		"eslint-config-haykam": "^1.10.0",
-		"eslint-plugin-extra-rules": "^0.0.0-development",
-		"eslint-plugin-html": "^6.1.2",
-		"eslint-plugin-jsdoc": "^32.3.0",
-		"eslint-plugin-json": "^2.1.2",
-		"eslint-plugin-markdown": "^2.0.1",
-		"eslint-plugin-node": "^11.1.0",
+		"@babel/eslint-parser": "^7.17.0",
+		"@babel/preset-react": "^7.16.7",
+		"eslint": "^8.9.0",
+		"eslint-config-haykam": "^1.15.0",
 		"eslint-plugin-react": "^7.23.2",
-		"eslint-plugin-unicorn": "^28.0.2",
 		"file-loader": "^4.1.0",
 		"html-minify-loader": "^1.4.0",
 		"jsx-loader": "^0.13.2",
@@ -39,7 +33,15 @@
 			"eslint-config-haykam",
 			"plugin:react/recommended"
 		],
-		"parser": "babel-eslint",
+		"parser": "@babel/eslint-parser",
+		"parserOptions": {
+			"requireConfigFile": false,
+			"babelOptions": {
+				"presets": [
+					"@babel/preset-react"
+				]
+			}
+		},
 		"settings": {
 			"react": {
 				"version": "detect"
