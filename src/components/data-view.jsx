@@ -26,24 +26,28 @@ class DataViewUnstyled extends React.Component {
 				if (gameTimes[game]) return;
 
 				dataLog("fetching game with id '%s'", game);
-				await fetch("https://www.speedrun.com/api/v1/games/" + game).then(res => res.json()).then(({ data: gameInfo }) => {
-					const gameName = gameInfo.names.international;
-					dataLog("fetched game '%s' (with id '%s')", gameName, game);
-					gameNames[game] = gameName;
 
-					const leaderboardLink = gameInfo.links.find(link => link.rel === "leaderboard");
-					if (!leaderboardLink) return;
+				const gameRes = await fetch("https://www.speedrun.com/api/v1/games/" + game);
+				const { data: gameInfo } = await gameRes.json();
 
-					dataLog("fetching runs for game '%s' (with id '%s')", gameName, game);
-					return fetch(leaderboardLink.uri).then(res => res.json()).then(({ data: leaderboard }) => {
-						dataLog("fetched runs for game '%s' (with id '%s')", gameName, game);
+				const gameName = gameInfo.names.international;
+				dataLog("fetched game '%s' (with id '%s')", gameName, game);
+				gameNames[game] = gameName;
 
-						const firstPlace = leaderboard.runs.find(run => run.place === 1);
-						if (firstPlace && firstPlace.run && firstPlace.run.times && firstPlace.run.times.primary_t) {
-							gameTimes[game] = firstPlace.run.times.primary_t;
-						}
-					});
-				});
+				const leaderboardLink = gameInfo.links.find(link => link.rel === "leaderboard");
+				if (!leaderboardLink) return;
+
+				dataLog("fetching runs for game '%s' (with id '%s')", gameName, game);
+
+				const leaderboardRes = await fetch(leaderboardLink.uri);
+				const { data: leaderboard } = await leaderboardRes.json();
+
+				dataLog("fetched runs for game '%s' (with id '%s')", gameName, game);
+
+				const firstPlace = leaderboard.runs.find(run => run.place === 1);
+				if (firstPlace && firstPlace.run && firstPlace.run.times && firstPlace.run.times.primary_t) {
+					gameTimes[game] = firstPlace.run.times.primary_t;
+				}
 			}
 			this.setState({
 				loading: false,
