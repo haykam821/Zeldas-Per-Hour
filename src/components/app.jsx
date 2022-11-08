@@ -5,6 +5,8 @@ const styled = require("styled-components").default;
 
 const DataView = require("./data-view.jsx");
 
+const { main: log } = require("../util/debug.js");
+
 class AppUnstyled extends React.Component {
 	render() {
 		return <div className={this.props.className}>
@@ -21,6 +23,10 @@ class AppUnstyled extends React.Component {
 				<a href="https://github.com/haykam821/Zeldas-Per-Hour">GitHub repo</a>
 			</p>
 		</div>;
+	}
+
+	componentDidMount() {
+		log("rendered app");
 	}
 }
 AppUnstyled.propTypes = {
