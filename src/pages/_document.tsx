@@ -1,10 +1,8 @@
-const React = require("react");
+import Document, { DocumentContext, DocumentInitialProps } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
-const Document = require("next/document").default;
-const { ServerStyleSheet } = require("styled-components");
-
-class StyledDocument extends Document {
-	static async getInitialProps(context) {
+export default class StyledDocument extends Document {
+	static async getInitialProps(context: DocumentContext): Promise<DocumentInitialProps> {
 		const sheet = new ServerStyleSheet();
 		const parentRenderPage = context.renderPage;
 
@@ -30,5 +28,3 @@ class StyledDocument extends Document {
 		}
 	}
 }
-
-module.exports.default = StyledDocument;

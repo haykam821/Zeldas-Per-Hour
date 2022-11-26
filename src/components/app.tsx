@@ -1,12 +1,13 @@
-const React = require("react");
+import { DataView } from "./data-view";
+import React from "react";
+import { log } from "../util/debug";
+import styled from "styled-components";
 
-const styled = require("styled-components").default;
+interface AppProps {
+	className?: string;
+}
 
-const DataView = require("./data-view.jsx");
-
-const { main: log } = require("../util/debug.js");
-
-class AppUnstyled extends React.Component {
+class AppUnstyled extends React.Component<AppProps> {
 	render() {
 		return <div className={this.props.className}>
 			<h1>Zeldas Per Hour</h1>
@@ -29,7 +30,7 @@ class AppUnstyled extends React.Component {
 	}
 }
 
-const App = styled(AppUnstyled)`
+export const App = styled(AppUnstyled)`
 	font-family: sans-serif;
 
 	${DataView} {
@@ -37,4 +38,3 @@ const App = styled(AppUnstyled)`
 		padding: 8px;
 	}
 `;
-module.exports = App;

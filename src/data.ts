@@ -1,4 +1,4 @@
-const systems = {
+export const systems: Record<string, string[]> = {
 	"3ds": ["The_Legend_of_Zelda", "albw", "alttp", "The_Legend_of_Zelda_Four_Swords", "mm3d", "oot3d", "tfh", "lozst", "oos", "ooa", "tmc", "Zelda_II_The_Adventure_of_Link"],
 	ds: ["alttpgba", "lozst", "tlozph"],
 	famicom: ["The_Legend_of_Zelda", "Zelda_II_The_Adventure_of_Link"],
@@ -19,9 +19,8 @@ const systems = {
 	wii: ["The_Legend_of_Zelda", "alttp", "mm", "oot", "tp", "lozss", "Zelda_II_The_Adventure_of_Link"],
 	wiiu: ["twwhd", "botw", "The_Legend_of_Zelda", "mm", "oot", "tphd", "lozst", "lozss", "tlozph", "tmc", "Zelda_II_The_Adventure_of_Link"],
 };
-module.exports.systems = systems;
 
-const systemNames = {
+export const systemNames: Record<string, string> = {
 	"3ds": "Nintendo 3DS",
 	famicom: "Famicom",
 	gamecube: "GameCube",
@@ -37,9 +36,8 @@ const systemNames = {
 	wii: "Wii",
 	wiiu: "Wii U",
 };
-module.exports.systemNames = systemNames;
 
-const games = Object.values(systems).reduce((acc, systemGames) => {
+export const games = Object.values(systems).reduce((acc, systemGames) => {
 	systemGames.forEach(game => {
 		if (!acc.includes(game)) {
 			acc.push(game);
@@ -47,4 +45,3 @@ const games = Object.values(systems).reduce((acc, systemGames) => {
 	});
 	return acc;
 }, []);
-module.exports.games = games;

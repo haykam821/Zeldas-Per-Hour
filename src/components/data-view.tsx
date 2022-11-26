@@ -1,18 +1,25 @@
-const React = require("react");
+import { DataWrapper, GameInfo, Leaderboard } from "../util/game-info";
+import { games, systemNames, systems } from "../data";
 
-const styled = require("styled-components").default;
-
-const { data: dataLog } = require("../util/debug.js");
+import React from "react";
+import { dataLog } from "../util/debug";
+import styled from "styled-components";
 
 const HOUR = 3600;
 
-const { systems, systemNames, games } = require("../data.js");
+const gameTimes: Record<string, number> = {};
+const gameNames: Record<string, string> = {};
 
-const gameTimes = {};
-const gameNames = {};
+interface DataViewProps {
+	className?: string;
+}
 
-class DataViewUnstyled extends React.Component {
-	constructor(props) {
+interface DataViewState {
+	loading: boolean;
+}
+
+class DataViewUnstyled extends React.Component<DataViewProps, DataViewState> {
+	constructor(props: DataViewProps) {
 		super(props);
 		this.state = {
 			loading: true,
@@ -27,7 +34,7 @@ class DataViewUnstyled extends React.Component {
 				dataLog("fetching game with id '%s'", game);
 
 				const gameRes = await fetch("https://www.speedrun.com/api/v1/games/" + game);
-				const { data: gameInfo } = await gameRes.json();
+				const { data: gameInfo }: DataWrapper<GameInfo> = await gameRes.json();
 
 				const gameName = gameInfo.names.international;
 				dataLog("fetched game '%s' (with id '%s')", gameName, game);
@@ -48,7 +55,7 @@ class DataViewUnstyled extends React.Component {
 
 				const leaderboardRes = await fetch(leaderboardLink.uri);
 				const leaderboardResData = await leaderboardRes.json();
-				const leaderboard = foundRecords ? leaderboardResData.data[0] : leaderboardResData.data;
+				const leaderboard: Leaderboard = foundRecords ? leaderboardResData.data[0] : leaderboardResData.data;
 				if (!leaderboard) return;
 
 				dataLog("fetched runs for game '%s' (with id '%s')", gameName, game);
@@ -95,5 +102,4 @@ class DataViewUnstyled extends React.Component {
 	}
 }
 
-const DataView = styled(DataViewUnstyled)``;
-module.exports = DataView;
+export const DataView = styled(DataViewUnstyled)``;
