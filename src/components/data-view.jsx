@@ -1,5 +1,4 @@
 const React = require("react");
-const propTypes = require("prop-types");
 
 const styled = require("styled-components").default;
 
@@ -95,9 +94,6 @@ class DataViewUnstyled extends React.Component {
 		</div>;
 	}
 }
-DataViewUnstyled.propTypes = {
-	className: propTypes.string,
-};
 
 const DataView = styled(DataViewUnstyled)``;
 module.exports = DataView;

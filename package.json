@@ -10,20 +10,17 @@
 		"@babel/preset-react": "^7.16.7",
 		"eslint": "^8.27.0",
 		"eslint-config-haykam": "^1.19.0",
-		"eslint-plugin-react": "^7.31.10",
-		"file-loader": "^6.2.0",
-		"html-minify-loader": "^1.4.0",
-		"jsx-loader": "^0.13.2",
-		"webpack": "^5.74.0",
-		"webpack-cli": "^4.10.0"
+		"eslint-plugin-react": "^7.31.10"
 	},
 	"scripts": {
-		"build": "webpack --config webpack.config.js",
+		"dev": "next dev",
+		"build": "next build && next export",
+		"start": "next start",
 		"lint": "eslint \"./**/*.js\" \"./**/*.jsx\" --ignore-path .gitignore"
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
-		"prop-types": "^15.7.2",
+		"next": "^13.0.5",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"styled-components": "^5.3.6"
@@ -33,6 +30,9 @@
 			"eslint-config-haykam",
 			"plugin:react/recommended"
 		],
+		"ignorePatterns": [
+			"next-env.d.ts"
+		],
 		"parser": "@babel/eslint-parser",
 		"parserOptions": {
 			"requireConfigFile": false,
@@ -41,6 +41,9 @@
 					"@babel/preset-react"
 				]
 			}
+		},
+		"rules": {
+			"react/prop-types": "off"
 		},
 		"settings": {
 			"react": {

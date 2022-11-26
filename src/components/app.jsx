@@ -1,5 +1,4 @@
 const React = require("react");
-const propTypes = require("prop-types");
 
 const styled = require("styled-components").default;
 
@@ -29,9 +28,6 @@ class AppUnstyled extends React.Component {
 		log("rendered app");
 	}
 }
-AppUnstyled.propTypes = {
-	className: propTypes.string,
-};
 
 const App = styled(AppUnstyled)`
 	font-family: sans-serif;
