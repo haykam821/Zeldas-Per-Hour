@@ -34,13 +34,23 @@ class DataViewUnstyled extends React.Component {
 				dataLog("fetched game '%s' (with id '%s')", gameName, game);
 				gameNames[game] = gameName;
 
-				const leaderboardLink = gameInfo.links.find(link => link.rel === "leaderboard");
+				let foundRecords = false;
+				const leaderboardLink = gameInfo.links.find(link => {
+					if (link.rel === "records") {
+						foundRecords = true;
+						return true;
+					}
+
+					return link.rel === "leaderboard";
+				});
 				if (!leaderboardLink) return;
 
 				dataLog("fetching runs for game '%s' (with id '%s')", gameName, game);
 
 				const leaderboardRes = await fetch(leaderboardLink.uri);
-				const { data: leaderboard } = await leaderboardRes.json();
+				const leaderboardResData = await leaderboardRes.json();
+				const leaderboard = foundRecords ? leaderboardResData.data[0] : leaderboardResData.data;
+				if (!leaderboard) return;
 
 				dataLog("fetched runs for game '%s' (with id '%s')", gameName, game);
 
