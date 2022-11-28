@@ -9,12 +9,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.4.0
+      - name: Configure Pages
+        uses: actions/configure-pages@v2.1.3
+        with:
+          static_site_generator: next
       - name: Install
         run: npm install
       - name: Build
         run: npm run build
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+      - name: Upload
+        uses: actions/upload-pages-artifact@v1.0.5
         with:
-          branch: gh-pages
-          folder: out
+          path: out
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1.2.3
