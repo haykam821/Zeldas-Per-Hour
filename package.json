@@ -10,10 +10,10 @@
 		"@types/node": "18.11.9",
 		"@types/react": "18.0.25",
 		"@types/styled-components": "^5.1.26",
-		"@typescript-eslint/eslint-plugin": "^5.44.0",
-		"@typescript-eslint/parser": "^5.44.0",
-		"eslint": "^8.27.0",
-		"eslint-config-haykam": "^1.19.0",
+		"@typescript-eslint/eslint-plugin": "^8.24.0",
+		"@typescript-eslint/parser": "^8.24.0",
+		"eslint": "^8.57.1",
+		"eslint-config-haykam": "^1.23.0",
 		"eslint-config-next": "^13.0.5",
 		"typescript": "4.9.3"
 	},
@@ -45,8 +45,6 @@
 			"@typescript-eslint"
 		],
 		"rules": {
-			"semi": "off",
-			"@typescript-eslint/semi": "error",
 			"no-shadow": "off",
 			"@typescript-eslint/no-shadow": "error",
 			"sort-imports": "error"
