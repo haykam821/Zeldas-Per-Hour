@@ -88,5 +88,5 @@ next-env.d.ts
 # DynamoDB Local files
 .dynamodb/
 
-# Next.js output
-out/
+# Vite output
+dist/
