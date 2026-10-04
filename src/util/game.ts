@@ -8,8 +8,8 @@ export class Game {
 	readonly id: string;
 
 	loaded = false;
-	name: string;
-	time: number;
+	name: string = "";
+	time: number = 0;
 
 	constructor(id: string) {
 		this.id = id;

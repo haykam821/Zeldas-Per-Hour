@@ -7,7 +7,7 @@ export class System {
 	readonly name: string;
 	readonly games: Game[];
 
-	fastestGame: Game = null;
+	fastestGame: Game | null = null;
 
 	constructor(id: string, name: string, games: Game[]) {
 		this.id = id;

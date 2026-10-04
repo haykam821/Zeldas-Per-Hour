@@ -30,7 +30,7 @@ export class DataRow extends React.Component<DataRowProps, DataRowState> {
 	render() {
 		const system = this.props.system;
 
-		if (!this.state.loaded) {
+		if (!this.state.loaded || system.fastestGame === null) {
 			return <p>
 				Loading {system.name} games...
 			</p>;
