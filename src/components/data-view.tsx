@@ -1,7 +1,8 @@
-import { DataRow } from "./data-row";
 import React from "react";
-import { SYSTEMS } from "../util/system";
 import styled from "styled-components";
+
+import { SYSTEMS } from "../util/system";
+import { DataRow } from "./data-row";
 
 interface DataViewProps {
 	className?: string;

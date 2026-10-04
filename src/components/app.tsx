@@ -1,7 +1,8 @@
-import { DataView } from "./data-view";
 import React from "react";
-import { log } from "../util/debug";
 import styled from "styled-components";
+
+import { log } from "../util/debug";
+import { DataView } from "./data-view";
 
 interface AppProps {
 	className?: string;

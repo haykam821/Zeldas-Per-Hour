@@ -1,6 +1,5 @@
-import { DataWrapper, GameInfo, Leaderboard } from "./game-info";
-
 import { dataLog } from "./debug";
+import { DataWrapper, GameInfo, Leaderboard } from "./game-info";
 
 const HOUR = 3600;
 
